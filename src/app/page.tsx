@@ -8,16 +8,18 @@ export default function HomePage() {
   return (
     <div className="flex flex-col w-full">
       {/* Hero Section */}
-      <section className="relative bg-vigyan-navy text-white py-24 md:py-32 overflow-hidden">
+      <section className="relative bg-vigyan-deepNavy text-white py-24 md:py-32 overflow-hidden">
         {/* Decorative elements */}
-        <div className="absolute top-0 right-0 w-1/3 h-full bg-vigyan-deepNavy opacity-50 skew-x-12 translate-x-20" />
+        <div className="absolute -right-24 -top-32 h-[480px] w-[480px] rounded-full bg-vigyan-blue/30 blur-3xl" />
+        <div className="absolute bottom-0 left-1/2 h-48 w-48 rounded-full bg-vigyan-saffron/15 blur-3xl" />
         
         <div className="container-custom px-4 md:px-8 relative z-10">
-          <div className="max-w-3xl">
-            <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6">
-              Discover Scientific <span className="text-vigyan-saffron">Knowledge</span>
+          <div className="max-w-4xl">
+            <p className="eyebrow mb-5">India&apos;s scientific knowledge layer</p>
+            <h1 className="text-5xl md:text-7xl font-black leading-[0.98] mb-7 tracking-tight">
+              Where research <span className="text-vigyan-saffron">finds its way</span> to people.
             </h1>
-            <p className="text-lg md:text-xl text-gray-300 mb-10 leading-relaxed max-w-2xl">
+            <p className="text-lg md:text-xl text-slate-300 mb-10 leading-relaxed max-w-2xl">
               Access the unified archive of institutional research, datasets, and expeditions. 
               Bridging the gap between research data and public knowledge.
             </p>
@@ -31,17 +33,17 @@ export default function HomePage() {
                 name="q"
                 type="text" 
                 placeholder="Search reports, datasets, expeditions, publications..." 
-                className="w-full pl-12 pr-32 py-4 md:py-6 bg-white text-vigyan-body rounded-sm text-lg focus:outline-none focus:ring-4 focus:ring-vigyan-saffron/30 transition-all shadow-xl"
+                className="w-full pl-12 pr-32 py-4 md:py-6 bg-white text-vigyan-body rounded-2xl text-lg focus:outline-none focus:ring-4 focus:ring-vigyan-saffron/30 transition-all shadow-2xl"
               />
               <div className="absolute right-2 top-2 bottom-2">
-                <VigyanButton variant="primary" size="md" className="h-full bg-vigyan-navy text-white font-bold">
+                <VigyanButton variant="secondary" size="md" className="h-full font-bold">
                   Search
                 </VigyanButton>
               </div>
             </form>
             
-            <div className="mt-6 flex flex-wrap gap-3 text-sm text-gray-400">
-              <span>Popular:</span>
+            <div className="mt-6 flex flex-wrap gap-3 text-sm text-slate-400">
+              <span className="text-slate-500">Try:</span>
               <Link href="/search?q=Bay of Bengal" className="hover:text-white underline underline-offset-4">Bay of Bengal</Link>
               <Link href="/search?q=Coral Reefs" className="hover:text-white underline underline-offset-4">Coral Reefs</Link>
               <Link href="/search?q=Deep Sea" className="hover:text-white underline underline-offset-4">Deep Sea Survey</Link>
@@ -51,7 +53,7 @@ export default function HomePage() {
       </section>
 
       {/* Quick Access Categories */}
-      <section className="py-12 bg-white border-b border-vigyan-border">
+      <section className="py-12 bg-white border-b border-vigyan-border dark:bg-vigyan-background">
         <div className="container-custom px-4 md:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
@@ -63,7 +65,7 @@ export default function HomePage() {
               <Link 
                 key={i} 
                 href={item.link} 
-                className="flex items-center justify-center gap-3 p-4 border border-gray-100 rounded-sm hover:border-vigyan-navy hover:bg-gray-50 transition-all group"
+                className="flex items-center justify-center gap-3 p-5 border border-gray-100 rounded-2xl hover:border-vigyan-saffron hover:bg-gray-50 transition-all group dark:hover:bg-gray-100"
               >
                 <span className={item.color}>{item.icon}</span>
                 <span className="font-medium text-vigyan-body group-hover:text-vigyan-navy">{item.label}</span>
@@ -78,7 +80,8 @@ export default function HomePage() {
         <div className="container-custom">
           <div className="flex items-end justify-between mb-10">
             <div>
-              <h2 className="text-3xl font-bold text-vigyan-heading mb-2">Featured Research</h2>
+              <p className="eyebrow mb-2">Explore the archive</p>
+              <h2 className="text-3xl md:text-4xl font-black text-vigyan-heading mb-2">Featured research</h2>
               <p className="text-vigyan-muted">Latest contributions from our scientific community.</p>
             </div>
             <Link href="/search" className="hidden md:flex items-center gap-2 text-vigyan-navy font-bold hover:underline group">

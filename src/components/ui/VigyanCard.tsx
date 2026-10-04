@@ -18,12 +18,12 @@ export default function VigyanCard({ resource, variant = 'compact' }: VigyanCard
   };
 
   return (
-    <div className="group bg-white border border-vigyan-border rounded-sm p-6 hover:shadow-md transition-all flex flex-col h-full">
+    <div className="group surface-card p-6 hover:-translate-y-1 hover:shadow-[0_24px_60px_-28px_rgba(18,59,93,0.55)] transition-all flex flex-col h-full">
       <div className="flex items-start justify-between mb-4">
-        <div className="p-2 bg-gray-50 rounded-sm border border-gray-100">
+        <div className="p-3 bg-vigyan-background rounded-xl border border-gray-100">
           {icons[resource.type]}
         </div>
-        <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-1 bg-gray-100 text-gray-600 rounded-sm">
+        <span className="text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 bg-vigyan-background text-gray-600 rounded-full">
           {resource.type}
         </span>
       </div>
@@ -42,8 +42,8 @@ export default function VigyanCard({ resource, variant = 'compact' }: VigyanCard
           <span className="mx-1">•</span>
           {resource.date}
         </div>
-        <Link href={`/resource/${resource.id}`} className="text-xs font-bold text-vigyan-navy hover:underline">
-          View Details
+        <Link href={`/resource/${resource.id}`} className="text-xs font-bold text-vigyan-navy hover:text-vigyan-saffron transition-colors">
+          Explore →
         </Link>
       </div>
     </div>

@@ -33,7 +33,7 @@ export default function VigyanButton({
   return (
     <button
       className={cn(
-        'inline-flex items-center justify-center rounded-sm font-medium transition-all active:scale-95',
+        'inline-flex items-center justify-center rounded-full font-semibold transition-all active:scale-95',
         variants[variant],
         sizes[size],
         className

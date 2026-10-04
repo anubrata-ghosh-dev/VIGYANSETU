@@ -8,15 +8,46 @@
   --background-end-rgb: 255, 255, 255;
 }
 
+html {
+  color-scheme: light;
+}
+
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: #f8fafc;
   font-family: 'Noto Sans', sans-serif;
+  transition: background-color 180ms ease, color 180ms ease;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+.dark body {
+  color: #e6edf3;
+  background: #0b1420;
+}
+
+@layer utilities {
+  .dark .bg-white { background-color: #111e2d; }
+  .dark .bg-gray-50 { background-color: #162536; }
+  .dark .bg-gray-100 { background-color: #1d3044; }
+  .dark .bg-vigyan-background { background-color: #0b1420; }
+  .dark .bg-vigyan-surface { background-color: #111e2d; }
+  .dark .text-vigyan-heading { color: #f2f6fa; }
+  .dark .text-vigyan-body { color: #d5e0ea; }
+  .dark .text-vigyan-muted { color: #9aabba; }
+  .dark .text-gray-400 { color: #91a4b6; }
+  .dark .text-gray-500 { color: #a5b5c3; }
+  .dark .text-gray-600 { color: #c1ccd6; }
+  .dark .border-vigyan-border, .dark .border-gray-100, .dark .border-gray-50 { border-color: #2a4054; }
+  .dark .border-vigyan-divider { border-color: #24384b; }
+  .dark .hover\:bg-gray-50:hover { background-color: #1d3044; }
+}
+
+::selection {
+  background: #d9822b;
+  color: white;
 }
 
 @layer components {
@@ -26,5 +57,13 @@ body {
   
   .container-custom {
     @apply max-w-7xl mx-auto;
+  }
+
+  .eyebrow {
+    @apply text-[11px] font-bold uppercase tracking-[0.22em] text-vigyan-saffron;
+  }
+
+  .surface-card {
+    @apply rounded-2xl border border-vigyan-border bg-white shadow-[0_18px_50px_-28px_rgba(18,59,93,0.35)];
   }
 }
