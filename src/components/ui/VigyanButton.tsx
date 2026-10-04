@@ -18,10 +18,10 @@ export default function VigyanButton({
   ...props
 }: VigyanButtonProps) {
   const variants = {
-    primary: 'bg-vigyan-navy text-white hover:bg-vigyan-deepNavy',
-    secondary: 'bg-vigyan-saffron text-white hover:bg-opacity-90',
-    outline: 'border-2 border-vigyan-navy text-vigyan-navy hover:bg-vigyan-navy hover:text-white',
-    ghost: 'text-vigyan-muted hover:bg-gray-100',
+    primary:   'bg-neel text-white hover:bg-neel-700',
+    secondary: 'bg-haldi text-neel hover:opacity-90',
+    outline:   'border-2 border-neel text-neel hover:bg-neel hover:text-white',
+    ghost:     'text-neel-500 hover:bg-hawa',
   };
 
   const sizes = {

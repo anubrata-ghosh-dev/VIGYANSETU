@@ -1,33 +1,41 @@
-"use client";
+'use client';
 
 import { Moon, Sun } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 export default function ThemeToggle() {
   const [dark, setDark] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    const saved = localStorage.getItem('vigyansetu-theme');
+    setMounted(true);
+    const saved = localStorage.getItem('vs-theme');
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const nextDark = saved ? saved === 'dark' : prefersDark;
-    document.documentElement.classList.toggle('dark', nextDark);
-    setDark(nextDark);
+    const isDark = saved ? saved === 'dark' : prefersDark;
+    document.documentElement.classList.toggle('dark', isDark);
+    setDark(isDark);
   }, []);
 
-  function toggleTheme() {
-    const nextDark = !dark;
-    document.documentElement.classList.toggle('dark', nextDark);
-    localStorage.setItem('vigyansetu-theme', nextDark ? 'dark' : 'light');
-    setDark(nextDark);
+  function toggle() {
+    const next = !dark;
+    document.documentElement.classList.toggle('dark', next);
+    localStorage.setItem('vs-theme', next ? 'dark' : 'light');
+    setDark(next);
   }
+
+  if (!mounted) return <div className="w-9 h-9" />;
 
   return (
     <button
       type="button"
-      onClick={toggleTheme}
+      onClick={toggle}
       aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'}
-      title={dark ? 'Switch to light mode' : 'Switch to dark mode'}
-      className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-vigyan-border text-vigyan-navy transition hover:bg-gray-50 dark:text-vigyan-saffron dark:hover:bg-gray-100"
+      className="inline-flex w-9 h-9 items-center justify-center rounded-lg border transition-colors"
+      style={{
+        borderColor: 'var(--border)',
+        color: 'var(--text-muted)',
+        background: 'transparent',
+      }}
     >
       {dark ? <Sun size={16} /> : <Moon size={16} />}
     </button>

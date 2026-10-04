@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useRef, useEffect } from 'react';
-import { Send, Bot, User, Paperclip, Trash2, RotateCcw } from 'lucide-react';
+import { Send, Bot, User, Paperclip, RotateCcw } from 'lucide-react';
 import VigyanButton from '@/components/ui/VigyanButton';
 
 type Message = {
@@ -11,10 +11,10 @@ type Message = {
 
 export default function ResearchAssistant() {
   const [messages, setMessages] = useState<Message[]>([
-    { 
-      role: 'assistant', 
-      content: "Hello. I am the Institutional Research Assistant. I can help you discover research, datasets, and expeditions from the NCPOR archive. How can I assist your research today?" 
-    }
+    {
+      role: 'assistant',
+      content: "Hello. I am the Institutional Research Assistant. I can help you discover research, datasets, and expeditions from the NCPOR archive. How can I assist your research today?",
+    },
   ]);
   const [input, setInput] = useState('');
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -57,15 +57,15 @@ export default function ResearchAssistant() {
   };
 
   return (
-    <div className="flex flex-col h-[calc(100vh-64px)] bg-gray-50">
+    <div className="flex flex-col h-[calc(100vh-64px)]" style={{ background: 'var(--bg)' }}>
       {/* Chat Header */}
-      <div className="bg-white border-b border-vigyan-border px-6 py-4 flex items-center justify-between">
+      <div className="border-b px-6 py-4 flex items-center justify-between" style={{ background: 'var(--surface)', borderColor: 'var(--border)' }}>
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-vigyan-navy text-white rounded-full flex items-center justify-center">
+          <div className="w-10 h-10 rounded-full flex items-center justify-center text-white" style={{ background: '#12264A' }}>
             <Bot size={20} />
           </div>
           <div>
-            <h1 className="font-bold text-vigyan-heading">Institutional Research Assistant</h1>
+            <h1 className="font-bold" style={{ color: 'var(--text)' }}>Institutional Research Assistant</h1>
             <p className="text-xs text-green-600 flex items-center gap-1">
               <span className="w-2 h-2 bg-green-600 rounded-full animate-pulse" />
               Source-Grounded AI Active
@@ -84,17 +84,31 @@ export default function ResearchAssistant() {
         <div className="max-w-4xl mx-auto space-y-6">
           {messages.map((msg, i) => (
             <div key={i} className={`flex gap-4 ${msg.role === 'user' ? 'flex-row-reverse' : 'flex-row'}`}>
-              <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${msg.role === 'user' ? 'bg-vigyan-saffron text-white' : 'bg-vigyan-navy text-white'}`}>
+              <div
+                className="w-8 h-8 rounded-full flex items-center justify-center shrink-0 text-white"
+                style={{ background: msg.role === 'user' ? '#F2A30F' : '#12264A' }}
+              >
                 {msg.role === 'user' ? <User size={16} /> : <Bot size={16} />}
               </div>
-              <div className={`max-w-xl p-4 rounded-sm shadow-sm ${msg.role === 'user' ? 'bg-vigyan-navy text-white rounded-tr-none' : 'bg-white text-vigyan-body border border-vigyan-border rounded-tl-none'}`}>
+              <div
+                className="max-w-xl p-4 rounded-md shadow-sm"
+                style={
+                  msg.role === 'user'
+                    ? { background: '#12264A', color: 'white' }
+                    : { background: 'var(--surface)', color: 'var(--text)', border: '1px solid var(--border)' }
+                }
+              >
                 <p className="leading-relaxed text-sm">{msg.content}</p>
                 {msg.citations && (
-                  <div className="mt-4 pt-4 border-t border-gray-100">
-                    <p className="text-[10px] font-bold uppercase text-gray-400 mb-2">Sources</p>
+                  <div className="mt-4 pt-4 border-t" style={{ borderColor: 'var(--border)' }}>
+                    <p className="text-[10px] font-bold uppercase mb-2" style={{ color: 'var(--text-muted)' }}>Sources</p>
                     <div className="flex flex-wrap gap-2">
                       {msg.citations.map((cit, j) => (
-                        <div key={j} className="text-xs bg-gray-50 text-vigyan-navy px-2 py-1 rounded border border-gray-200 hover:bg-gray-100 cursor-pointer transition-colors">
+                        <div
+                          key={j}
+                          className="text-xs px-2 py-1 rounded border cursor-pointer transition-colors"
+                          style={{ background: 'var(--bg)', color: 'var(--text)', borderColor: 'var(--border)' }}
+                        >
                           {cit.title} ({cit.page})
                         </div>
                       ))}
@@ -108,25 +122,29 @@ export default function ResearchAssistant() {
       </div>
 
       {/* Input Area */}
-      <div className="bg-white border-t border-vigyan-border p-4 md:p-8">
+      <div className="border-t p-4 md:p-8" style={{ background: 'var(--surface)', borderColor: 'var(--border)' }}>
         <div className="max-w-4xl mx-auto relative">
-          <div className="flex items-center gap-3 bg-gray-50 border border-vigyan-border rounded-sm p-2 focus-within:border-vigyan-navy transition-all">
-            <button className="p-2 text-gray-400 hover:text-vigyan-navy transition-colors">
+          <div
+            className="flex items-center gap-3 border rounded-md p-2 focus-within:border-sagar transition-all"
+            style={{ background: 'var(--bg)', borderColor: 'var(--border)' }}
+          >
+            <button className="p-2 transition-colors" style={{ color: 'var(--text-muted)' }}>
               <Paperclip size={20} />
             </button>
-            <input 
-              type="text" 
+            <input
+              type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && handleSend()}
-              placeholder="Ask about institutional research, datasets, or expeditions..." 
+              placeholder="Ask about institutional research, datasets, or expeditions..."
               className="flex-grow bg-transparent py-2 focus:outline-none text-sm"
+              style={{ color: 'var(--text)' }}
             />
             <VigyanButton variant="primary" size="sm" className="gap-2" onClick={handleSend}>
               <Send size={16} /> Send
             </VigyanButton>
           </div>
-          <p className="text-center text-[10px] text-gray-400 mt-3">
+          <p className="text-center text-[10px] mt-3" style={{ color: 'var(--text-muted)' }}>
             Answers are grounded in available institutional sources. AI may occasionally produce inaccuracies.
           </p>
         </div>
